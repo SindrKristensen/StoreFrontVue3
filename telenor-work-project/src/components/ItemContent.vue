@@ -20,7 +20,7 @@
 import type { StoreItem } from '@/types';
 import type { PropType } from 'vue';
 import { useRouter } from 'vue-router';
-import { injectShoppingCartStore } from '@/utils/ShoppingCartStore';
+import { injectShoppingCartStore } from '@/stores/ShoppingCartStore';
 
 const props = defineProps({
   item: {

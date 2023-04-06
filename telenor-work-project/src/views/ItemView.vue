@@ -27,7 +27,7 @@ import { useRoute } from 'vue-router';
 import { useFetchSingleItem } from '@/utils/useFetchSingleItem';
 import { computed, ref } from 'vue';
 import type { StoreItem } from '@/types';
-import { injectShoppingCartStore } from '@/utils/ShoppingCartStore';
+import { injectShoppingCartStore } from '@/stores/ShoppingCartStore';
 
 const cart = injectShoppingCartStore();
 
