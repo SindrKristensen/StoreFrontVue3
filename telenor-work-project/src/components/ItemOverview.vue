@@ -1,5 +1,5 @@
 <template>
-  <div class="overview panel panel-primary">
+  <div class="overview">
     <ItemContent v-for="item in items" :item="item" :key="item.id" />
   </div>
 </template>

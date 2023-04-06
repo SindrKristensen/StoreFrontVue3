@@ -45,13 +45,3 @@ const items = computed(() => {
 fetchData().then((json) => (storeItems.value = json));
 fetchCategories().then((json) => (categories.value = json));
 </script>
-
-<style>
-.container {
-  padding: 4rem 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  gap: 2rem;
-}
-</style>
