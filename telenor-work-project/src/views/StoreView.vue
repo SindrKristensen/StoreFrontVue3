@@ -42,6 +42,10 @@ const items = computed(() => {
   return newItems;
 });
 
-fetchData().then((json) => (storeItems.value = json));
-fetchCategories().then((json) => (categories.value = json));
+fetchData().then((json) => {
+  storeItems.value = json;
+});
+fetchCategories().then((json) => {
+  categories.value = json;
+});
 </script>

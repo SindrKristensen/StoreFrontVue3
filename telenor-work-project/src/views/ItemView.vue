@@ -9,7 +9,9 @@
           </h3>
           <div class="action_bar">
             <h4>{{ itemData?.price }},-</h4>
-            <button type="button" class="btn btn-default button">Buy</button>
+            <button type="button" class="btn btn-default button" @click="cart.addToCart(itemData)">
+              Buy
+            </button>
           </div>
           <div>
             {{ itemData?.description }}
@@ -25,6 +27,9 @@ import { useRoute } from 'vue-router';
 import { useFetchSingleItem } from '@/utils/useFetchSingleItem';
 import { computed, ref } from 'vue';
 import type { StoreItem } from '@/types';
+import { injectShoppingCartStore } from '@/utils/ShoppingCartStore';
+
+const cart = injectShoppingCartStore();
 
 const route = useRoute();
 const { fetchSingleItem } = useFetchSingleItem();

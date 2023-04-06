@@ -9,7 +9,9 @@
 
     <div class="action_bar">
       <h3>{{ item.price }},-</h3>
-      <button type="button" class="btn btn-default button">Buy</button>
+      <button type="button" class="btn btn-default button" @click="cart.addToCart(item)">
+        Buy
+      </button>
     </div>
   </div>
 </template>
@@ -18,6 +20,7 @@
 import type { StoreItem } from '@/types';
 import type { PropType } from 'vue';
 import { useRouter } from 'vue-router';
+import { injectShoppingCartStore } from '@/utils/ShoppingCartStore';
 
 const props = defineProps({
   item: {
@@ -25,6 +28,8 @@ const props = defineProps({
     required: true
   }
 });
+
+const cart = injectShoppingCartStore();
 
 const router = useRouter();
 

@@ -1,15 +1,21 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 
-import App from './App.vue'
-import router from './router'
+import App from './App.vue';
+import router from './router';
 
-import './assets/main.css'
-import "bootstrap/dist/css/bootstrap.min.css";
+import './assets/main.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faHatWizard, faStore, faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-const app = createApp(App)
+library.add(faHatWizard, faStore, faCartShopping);
 
-app.use(createPinia())
-app.use(router)
+const app = createApp(App);
+app.component('font-awesome-icon', FontAwesomeIcon);
 
-app.mount('#app')
+app.use(createPinia());
+app.use(router);
+
+app.mount('#app');
