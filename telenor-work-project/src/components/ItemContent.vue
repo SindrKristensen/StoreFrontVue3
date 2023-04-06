@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div>
-      <img class="img-thumbnail img-content" :src="item.image" />
+      <img class="img-thumbnail img-content" :src="item.image" @click="viewItem" />
     </div>
     <header>
       {{ formatTitle(item.title) }}
@@ -15,19 +15,31 @@
 </template>
 
 <script setup lang="ts">
-import type { StoreItem } from '@/types'
-import type { PropType } from 'vue'
+import type { StoreItem } from '@/types';
+import type { PropType } from 'vue';
+import { useRouter } from 'vue-router';
 
-defineProps({
+const props = defineProps({
   item: {
     type: Object as PropType<StoreItem>,
     required: true
   }
-})
+});
+
+const router = useRouter();
 
 const formatTitle = (title: string) => {
-  return title.split('(')[0]
-}
+  return title.split('(')[0];
+};
+
+const viewItem = () => {
+  router.push({
+    name: 'itemView',
+    params: {
+      id: props.item?.id
+    }
+  });
+};
 </script>
 
 <style scoped>
@@ -69,5 +81,9 @@ const formatTitle = (title: string) => {
 
 header {
   font-weight: bolder;
+}
+
+img:hover {
+  cursor: pointer;
 }
 </style>
