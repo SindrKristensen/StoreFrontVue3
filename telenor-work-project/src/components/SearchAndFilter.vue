@@ -2,7 +2,7 @@
   <div class="searchBar">
     <div class="input-group-btn drop-down">
       <select v-model="filterQuery" class="form-select">
-        <option v-for="category in categories" :value="category">
+        <option v-for="category in categoriesWithEmpty" :value="category">
           {{ category }}
         </option>
       </select>
@@ -18,19 +18,14 @@
       />
     </div>
   </div>
-  {{ filterQuery }}
 </template>
 
 <script setup lang="ts">
 import { useVModel } from '@vueuse/core'
-import { ref } from 'vue'
+import {computed, ref, watch} from 'vue'
 
 const props = defineProps({
   search: {
-    type: String,
-    default: ''
-  },
-  filter: {
     type: String,
     default: ''
   },
@@ -43,7 +38,18 @@ const props = defineProps({
 const emits = defineEmits(['update:search', 'update:filter'])
 
 const searchQuery = useVModel(props, 'search', emits)
-const filterQuery = ref('')
+const filterQuery = ref('Select Category')
+
+const categoriesWithEmpty = computed(() => {
+  const list = props.categories
+  list.unshift('Select Category')
+
+  return list
+})
+
+watch(filterQuery,value =>{
+    emits('update:filter', value);
+})
 </script>
 
 <style scoped>

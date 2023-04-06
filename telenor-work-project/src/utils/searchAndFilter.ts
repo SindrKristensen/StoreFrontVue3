@@ -1,24 +1,28 @@
 import getLocaleIndexOf from 'locale-index-of'
 import type { StoreItem } from '@/types'
-import type { Ref } from 'vue'
 
 export const searchAndFilter = () => {
-  const performSearch = (items: Ref<Array<StoreItem>>, search?: string) => {
-    if (!search) return items.value
+  const performSearch = (items: Array<StoreItem>, search?: string) => {
+    if (!search) return items
 
     const collator = new Intl.Collator('nb-no', {
       usage: 'search',
       sensitivity: 'base'
     })
     const localeIndexOf = getLocaleIndexOf(Intl)
-    return items.value.filter(
+    return items.filter(
       (it) =>
         localeIndexOf(it.title, search, collator) !== -1 ||
         localeIndexOf(it.description, search, collator) !== -1
     )
   }
 
+  const preformFilter = (items: Array<StoreItem>, category: string) => {
+    return items.filter(item => item.category === category);
+  }
+
   return {
-    performSearch
+    performSearch,
+    preformFilter
   }
 }
