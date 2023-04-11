@@ -48,12 +48,6 @@ const getActiveClass = (routeName: string) => {
   background-color: rgba(235, 235, 235, 0.64);
 }
 
-.nav_bar {
-  display: flex;
-  justify-content: flex-end;
-  gap: 2rem;
-}
-
 .icon_color {
   color: hsla(160, 100%, 37%, 1);
 }
