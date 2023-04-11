@@ -4,7 +4,7 @@
   <div v-if="!loading" class="container">
     <div class="content shadow rounded-2">
       <div class="top_content">
-        <img :src="itemData?.image" class="img-thumbnail right_side" />
+        <img class="img-thumbnail right_side" alt="..." :src="itemData?.image" />
         <div class="left_side">
           <h3>
             {{ itemData?.title }}

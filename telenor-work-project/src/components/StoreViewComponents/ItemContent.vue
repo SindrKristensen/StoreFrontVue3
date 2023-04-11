@@ -3,6 +3,7 @@
     <div>
       <img
         class="img-thumbnail img-content"
+        alt="..."
         :src="item.image"
         @click="$emit('viewItem', item.id)"
       />
