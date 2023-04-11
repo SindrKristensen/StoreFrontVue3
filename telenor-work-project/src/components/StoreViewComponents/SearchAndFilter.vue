@@ -1,5 +1,5 @@
 <template>
-  <div class="searchBar">
+  <div class="searchBar shadow rounded-2">
     <div class="input-group-btn drop-down">
       <select v-model="filterQuery" class="form-select">
         <option v-for="category in categoriesWithEmpty" :value="category">
@@ -21,8 +21,8 @@
 </template>
 
 <script setup lang="ts">
-import { useVModel } from '@vueuse/core'
-import {computed, ref, watch} from 'vue'
+import { useVModel } from '@vueuse/core';
+import { computed, ref, watch } from 'vue';
 
 const props = defineProps({
   search: {
@@ -33,23 +33,23 @@ const props = defineProps({
     type: Array<String>,
     default: []
   }
-})
+});
 
-const emits = defineEmits(['update:search', 'update:filter'])
+const emits = defineEmits(['update:search', 'update:filter']);
 
-const searchQuery = useVModel(props, 'search', emits)
-const filterQuery = ref('Select Category')
+const searchQuery = useVModel(props, 'search', emits);
+const filterQuery = ref('Select Category');
 
 const categoriesWithEmpty = computed(() => {
-  const list = props.categories
-  list.unshift('Select Category')
+  const list = props.categories;
+  list.unshift('Select Category');
 
-  return list
-})
+  return list;
+});
 
-watch(filterQuery,value =>{
-    emits('update:filter', value);
-})
+watch(filterQuery, (value) => {
+  emits('update:filter', value);
+});
 </script>
 
 <style scoped>
@@ -64,7 +64,6 @@ watch(filterQuery,value =>{
   border-style: solid;
   border-width: thin;
   border-color: #f8f8f8;
-  border-radius: 5%;
 }
 
 .drop-down {

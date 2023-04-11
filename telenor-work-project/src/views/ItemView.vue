@@ -2,7 +2,7 @@
   <LoadingIndicator v-if="loading" />
 
   <div v-if="!loading" class="container">
-    <div class="content">
+    <div class="content shadow rounded-2">
       <div class="top_content">
         <img :src="itemData?.image" class="img-thumbnail right_side" />
         <div class="left_side">
@@ -60,7 +60,6 @@ fetchSingleItem(id.value).then((item) => (itemData.value = item));
   border-style: solid;
   border-width: thin;
   border-color: #f8f8f8;
-  border-radius: 5%;
 }
 
 .top_content {

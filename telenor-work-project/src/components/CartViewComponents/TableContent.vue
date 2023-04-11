@@ -1,9 +1,11 @@
 <template>
   <li class="list-group-item cart-item">
     <div class="cart-details">
-      <strong>{{ cartItem.item.title }}</strong>
-      <div>Prize: {{ cartItem.item.price }},-</div>
-      <div>Quantity: {{ cartItem.quantity }}</div>
+      <h5 class="mb-1">{{ cartItem.item.title }}</h5>
+      <p class="mb-1">Prize: {{ cartItem.item.price }},-</p>
+      <p class="mb-1">
+        Quantity: <span class="badge rounded-pill text-bg-info">{{ cartItem.quantity }}</span>
+      </p>
     </div>
 
     <div class="cart-actions">

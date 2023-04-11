@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content shadow rounded-2">
     <div>
       <img
         class="img-thumbnail img-content"
@@ -52,7 +52,6 @@ const formatTitle = (title: string) => {
   border-style: solid;
   border-width: thin;
   border-color: #f8f8f8;
-  border-radius: 5%;
 }
 
 .img-content {

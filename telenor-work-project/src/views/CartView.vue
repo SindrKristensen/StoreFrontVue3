@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="content">
+    <div class="content shadow rounded-2">
       <Table
         :cart-items="cart.getCart()"
         @add-item="cart.addToCart($event)"
@@ -49,6 +49,5 @@ const emptyCart = () => {
   border-style: solid;
   border-width: thin;
   border-color: #f8f8f8;
-  border-radius: 5%;
 }
 </style>
