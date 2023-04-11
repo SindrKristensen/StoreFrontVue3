@@ -1,10 +1,12 @@
 <template>
   <div class="header">
-    <div>My Super Pro Store</div>
+    <RouterLink to="/" class="heading"> My Super Pro Store </RouterLink>
+
     <nav class="nav_bar">
       <RouterLink to="/">
         <font-awesome-icon class="icon_color" icon="store" size="xl" />
       </RouterLink>
+
       <RouterLink to="/cart">
         <font-awesome-icon class="icon_color" icon="cart-shopping" size="xl" />
       </RouterLink>
@@ -17,6 +19,14 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.heading {
+  text-decoration: none;
+  color: Black;
+}
+.heading:hover {
+  background-color: rgba(235, 235, 235, 0.64);
 }
 
 .nav_bar {

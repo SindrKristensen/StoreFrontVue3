@@ -1,6 +1,12 @@
 <template>
   <div class="overview">
-    <ItemContent v-for="item in items" :item="item" :key="item.id" />
+    <ItemContent
+      v-for="item in items"
+      :item="item"
+      :key="item.id"
+      @add-item="$emit('addItem', $event)"
+      @view-item="$emit('viewItem', $event)"
+    />
   </div>
 </template>
 
@@ -14,6 +20,8 @@ defineProps({
     required: true
   }
 });
+
+defineEmits(['viewItem', 'addItem']);
 </script>
 
 <style scoped>

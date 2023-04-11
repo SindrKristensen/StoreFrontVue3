@@ -6,7 +6,7 @@
       v-model:filter="filterValue"
     />
 
-    <ItemOverview :items="items" />
+    <ItemOverview :items="items" @view-item="viewItem($event)" @add-item="cart.addToCart($event)" />
   </div>
 </template>
 
@@ -18,7 +18,12 @@ import type { StoreItem } from '@/types';
 import SearchAndFilter from '@/components/SearchAndFilter.vue';
 import { searchAndFilter } from '@/utils/searchAndFilter';
 import { useFetchCategories } from '@/utils/useFetchCategories';
+import { injectShoppingCartStore } from '@/stores/ShoppingCartStore';
+import { useRouter } from 'vue-router';
 
+const cart = injectShoppingCartStore();
+
+const router = useRouter();
 const { fetchData } = useFetchData();
 const { fetchCategories } = useFetchCategories();
 const { performSearch, preformFilter } = searchAndFilter();
@@ -41,6 +46,15 @@ const items = computed(() => {
 
   return newItems;
 });
+
+const viewItem = (id: number) => {
+  router.push({
+    name: 'itemView',
+    params: {
+      id: id
+    }
+  });
+};
 
 fetchData().then((json) => {
   storeItems.value = json;

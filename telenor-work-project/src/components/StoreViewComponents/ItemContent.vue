@@ -1,7 +1,11 @@
 <template>
   <div class="content">
     <div>
-      <img class="img-thumbnail img-content" :src="item.image" @click="viewItem" />
+      <img
+        class="img-thumbnail img-content"
+        :src="item.image"
+        @click="$emit('viewItem', item.id)"
+      />
     </div>
     <header>
       {{ formatTitle(item.title) }}
@@ -9,7 +13,7 @@
 
     <div class="action_bar">
       <h3>{{ item.price }},-</h3>
-      <button type="button" class="btn btn-default button" @click="cart.addToCart(item)">
+      <button type="button" class="btn btn-default button" @click="$emit('addItem', item)">
         Buy
       </button>
     </div>
@@ -19,31 +23,18 @@
 <script setup lang="ts">
 import type { StoreItem } from '@/types';
 import type { PropType } from 'vue';
-import { useRouter } from 'vue-router';
-import { injectShoppingCartStore } from '@/stores/ShoppingCartStore';
 
-const props = defineProps({
+defineProps({
   item: {
     type: Object as PropType<StoreItem>,
     required: true
   }
 });
 
-const cart = injectShoppingCartStore();
-
-const router = useRouter();
+defineEmits(['viewItem', 'addItem']);
 
 const formatTitle = (title: string) => {
   return title.split('(')[0];
-};
-
-const viewItem = () => {
-  router.push({
-    name: 'itemView',
-    params: {
-      id: props.item?.id
-    }
-  });
 };
 </script>
 
