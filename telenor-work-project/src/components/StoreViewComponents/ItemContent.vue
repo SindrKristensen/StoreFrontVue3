@@ -1,5 +1,5 @@
 <template>
-  <div class="content shadow rounded-2">
+  <div class="item_content shadow rounded-2">
     <div>
       <img
         class="img-thumbnail img-content"
@@ -39,7 +39,7 @@ const formatTitle = (title: string) => {
 </script>
 
 <style scoped>
-.content {
+.item_content {
   display: flex;
   align-items: center;
   flex-direction: column;

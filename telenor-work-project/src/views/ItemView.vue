@@ -47,21 +47,6 @@ fetchSingleItem(id.value).then((item) => (itemData.value = item));
 </script>
 
 <style scoped>
-.content {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 2rem;
-
-  padding: 2rem;
-
-  color: rgba(60, 60, 60, 0.66);
-  background-color: #f8f8f8;
-  border-style: solid;
-  border-width: thin;
-  border-color: #f8f8f8;
-}
-
 .top_content {
   display: flex;
   flex-direction: row;
