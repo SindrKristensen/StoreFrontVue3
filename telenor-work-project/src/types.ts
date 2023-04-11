@@ -14,4 +14,5 @@ export interface ShoppingCart {
 export interface CartItem {
   item: StoreItem;
   quantity: number;
+  totalPrice: number;
 }

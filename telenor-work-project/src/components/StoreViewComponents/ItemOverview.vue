@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import ItemContent from '@/components/ItemContent.vue';
+import ItemContent from '@/components/StoreViewComponents/ItemContent.vue';
 import type { StoreItem } from '@/types';
 
 defineProps({

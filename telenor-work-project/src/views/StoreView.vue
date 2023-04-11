@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import ItemOverview from '@/components/ItemOverview.vue';
+import ItemOverview from '@/components/StoreViewComponents/ItemOverview.vue';
 import { useFetchData } from '@/utils/useFetchData';
 import { computed, ref } from 'vue';
 import type { StoreItem } from '@/types';

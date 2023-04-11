@@ -4,26 +4,30 @@ import type { CartItem, ShoppingCart, StoreItem } from '@/types';
 import { forEach, groupBy } from 'lodash';
 
 export class ShoppingCartStore {
+  private _LOCAL_STORAGE_KEY = 'shopping-cart';
+
   private cart = ref({} as ShoppingCart);
+
+  private getStorage() {
+    return localStorage.getItem(this._LOCAL_STORAGE_KEY);
+  }
+
+  private setCart(cart: ShoppingCart) {
+    localStorage.setItem(this._LOCAL_STORAGE_KEY, JSON.stringify({ cart: cart, date: Date.now() }));
+  }
 
   public newShoppingCart() {
     this.cart.value = { content: [] };
-    let oldCart = localStorage.getItem('shopping-cart');
+    let oldCart = this.getStorage();
 
     if (oldCart) {
       if (!(JSON.parse(oldCart).date < Date.now() - 1800000)) {
         this.cart.value = JSON.parse(oldCart).cart;
       } else {
-        localStorage.setItem(
-          'shopping-cart',
-          JSON.stringify({ cart: this.cart.value, date: Date.now() })
-        );
+        this.setCart(this.cart.value);
       }
     } else {
-      localStorage.setItem(
-        'shopping-cart',
-        JSON.stringify({ cart: this.cart.value, date: Date.now() })
-      );
+      this.setCart(this.cart.value);
     }
   }
 
@@ -33,13 +37,11 @@ export class ShoppingCartStore {
     } else {
       throw new Error('Undefined Shopping item');
     }
-    localStorage.setItem(
-      'shopping-cart',
-      JSON.stringify({ cart: this.cart.value, date: Date.now() })
-    );
+
+    this.setCart(this.cart.value);
   }
 
-  public removeFromCart(item?: StoreItem) {
+  public removeItemFromCart(item?: StoreItem) {
     if (item) {
       this.cart.value.content.splice(
         this.cart.value.content.findIndex((a) => a.id === item.id),
@@ -48,10 +50,14 @@ export class ShoppingCartStore {
     } else {
       throw new Error('Undefined Shopping item');
     }
-    localStorage.setItem(
-      'shopping-cart',
-      JSON.stringify({ cart: this.cart.value, date: Date.now() })
-    );
+
+    this.setCart(this.cart.value);
+  }
+
+  public emptyCart() {
+    this.cart.value = { content: [] };
+
+    this.setCart(this.cart.value);
   }
 
   public getCart() {
@@ -61,6 +67,7 @@ export class ShoppingCartStore {
     forEach(groupedBy, (value) => {
       countedOccurrences.push({
         quantity: value.length,
+        totalPrice: Number(value[0].price) * value.length,
         item: value[0]
       });
     });
