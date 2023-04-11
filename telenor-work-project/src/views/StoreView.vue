@@ -1,5 +1,7 @@
 <template>
-  <div class="container">
+  <LoadingIndicator v-if="loading" />
+
+  <div v-if="!loading" class="container">
     <SearchAndFilter
       v-model:search="searchValue"
       :categories="categories"
@@ -20,6 +22,7 @@ import { searchAndFilter } from '@/utils/searchAndFilter';
 import { useFetchCategories } from '@/utils/useFetchCategories';
 import { injectShoppingCartStore } from '@/stores/ShoppingCartStore';
 import { useRouter } from 'vue-router';
+import LoadingIndicator from '@/components/LoadingIndicator.vue';
 
 const cart = injectShoppingCartStore();
 
@@ -46,6 +49,8 @@ const items = computed(() => {
 
   return newItems;
 });
+
+const loading = computed(() => !(storeItems.value.length && categories.value.length));
 
 const viewItem = (id: number) => {
   router.push({

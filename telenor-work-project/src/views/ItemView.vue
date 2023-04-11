@@ -1,5 +1,7 @@
 <template>
-  <div class="container">
+  <LoadingIndicator v-if="loading" />
+
+  <div v-if="!loading" class="container">
     <div class="content">
       <div class="top_content">
         <img :src="itemData?.image" class="img-thumbnail right_side" />
@@ -28,6 +30,7 @@ import { useFetchSingleItem } from '@/utils/useFetchSingleItem';
 import { computed, ref } from 'vue';
 import type { StoreItem } from '@/types';
 import { injectShoppingCartStore } from '@/stores/ShoppingCartStore';
+import LoadingIndicator from '@/components/LoadingIndicator.vue';
 
 const cart = injectShoppingCartStore();
 
@@ -37,6 +40,8 @@ const { fetchSingleItem } = useFetchSingleItem();
 const itemData = ref<StoreItem>();
 
 const id = computed(() => route.params.id as string);
+
+const loading = computed(() => !itemData.value);
 
 fetchSingleItem(id.value).then((item) => (itemData.value = item));
 </script>
